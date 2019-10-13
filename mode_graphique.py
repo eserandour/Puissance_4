@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 13 octobre 2019 à 15 h 43
+#  Version du 13 octobre 2019 à 19 h 55
 ########################################################################
 """
 
-from constantes import NB_COLONNES, NB_LIGNES, TEMPS_CHUTE
+from constantes import NB_COLONNES, NB_LIGNES, TEMPS_CHUTE, LARGEUR_GRILLE, ESPACEMENT
 import tkinter
 import time
 
@@ -25,11 +25,6 @@ fenetreJeu.title("Puissance 4")
 
 ########################################################################
 # AFFICHAGE DE LA GRILLE ET DES JETONS DANS LA FENETRE TKINTER
-########################################################################
-
-LARGEUR_GRILLE = 480  # A adapter
-ESPACEMENT = LARGEUR_GRILLE / 64  # Espace entre 2 trous de la grille
-
 ########################################################################
 
 def hauteur_grille(r):
@@ -99,6 +94,11 @@ def destruction_jetons():
     grille.delete('jeton')
 
 ########################################################################
+
+
+
+
+########################################################################
 # Création des widgets "enfants" : grille (Canvas)
 ########################################################################
 
@@ -128,6 +128,7 @@ scoreRouges = tkinter.Label(fenetreJeu, text='Rouges : 0')
 scoreRouges.pack(side='right')
 
 ########################################################################
+
 
 
 
