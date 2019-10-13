@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 13 octobre 2019 à 14 h 28
+#  Version du 13 octobre 2019 à 15 h 35
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -104,15 +104,17 @@ def fin_partie(positions):
 
 ########################################################################
 
-def competition(ia1, ia2):
+def competition(couleur, ia1, ia2):
     """ """
+    global couleurJoueur
     listePositions = initialise_liste_positions()
     # ia1 joue en premier sur la moitié des parties
     finPartie = False
     for i in range(NB_PARTIES // 2):
-        affiche_joueur_qui_commence_console(couleurJoueur)
+        affiche_joueur_qui_commence_console(couleur)
         if MODE_GRAPHIQUE:
-            affiche_joueur_qui_commence_fenetre(couleurJoueur)
+            affiche_joueur_qui_commence_fenetre(couleur)
+        couleurJoueur = couleur
         while not finPartie:
             listePositions = jouer_ordi_ia(listePositions, couleurJoueur, ia1)
             finPartie = fin_partie(listePositions)  # Teste si la partie est finie
@@ -140,9 +142,7 @@ def competition(ia1, ia2):
 ########################################################################
 
 if NB_PARTIES > 1:
-    couleurJoueur = 'yellow'  # Couleur qui commence
-    competition(IA_JAUNE, IA_ROUGE)
-    couleurJoueur = 'red'  # Couleur qui commence
-    competition(IA_ROUGE, IA_JAUNE)
+    competition('yellow', IA_JAUNE, IA_ROUGE)  # Les jaunes commencent
+    competition('red', IA_ROUGE, IA_JAUNE)  # Les rouges commencent
 
 ########################################################################
