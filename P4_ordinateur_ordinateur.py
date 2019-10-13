@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 13 octobre 2019 à 18 h 34
+#  Version du 13 octobre 2019 à 18 h 37
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -146,6 +146,7 @@ if NB_PARTIES > 1:
     competition('red', IA_ROUGE, IA_JAUNE)  # Les rouges commencent sur la moitié des parties
 
 # Démarrage du réceptionnaire d'évènements (boucle principale) :
-fenetreJeu.mainloop()
+if MODE_GRAPHIQUE:
+    fenetreJeu.mainloop()
 
 ########################################################################
