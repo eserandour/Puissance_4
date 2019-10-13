@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 13 octobre 2019 à 18 h 37
+#  Version du 13 octobre 2019 à 21 h 30
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -37,6 +37,7 @@ import math
 
 
 
+# Variables globales
 couleurJoueur = ''
 victoiresJaunes = 0
 victoiresRouges = 0
