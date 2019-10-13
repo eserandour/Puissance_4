@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 13 octobre 2019 à 15 h 43
+#  Version du 13 octobre 2019 à 16 h 16
 ########################################################################
 """
 
@@ -11,7 +11,7 @@
 
 MODE_GRAPHIQUE = True  # True : Pour afficher la grille dans une fenêtre et dans la console
                        # False : Pour afficher la grille dans la console exclusivement
-TEMPS_CHUTE = 0.1  # 0.1 pour visualiser la chute des pions
+TEMPS_CHUTE = 0  # 0.1 pour visualiser la chute des pions
 
 
 
@@ -21,8 +21,8 @@ TEMPS_CHUTE = 0.1  # 0.1 pour visualiser la chute des pions
 ########################################################################
 
 NB_PARTIES = 6  # A adapter (un nombre pair plus grand que 1)
-IA_JAUNE = 5  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
-IA_ROUGE = 8 # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
+IA_JAUNE = 8  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
+IA_ROUGE = 5 # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
 
 ########################################################################
 
