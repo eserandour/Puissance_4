@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from constantes import NB_COLONNES, NB_LIGNES
-from commun import alignements, colonne_pleine, jouer
+from commun import alignements, colonne_pleine, jouer, inverse
 import math
 
 
