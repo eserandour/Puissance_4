@@ -40,7 +40,7 @@ def hauteur_grille(r):
 
 def rayon():
     """ Rayon des trous de la grille et des pions"""
-    return (LARGEUR_GRILLE - (NB_COLONNES + 1)*ESPACEMENT) /( 2*NB_COLONNES)
+    return (LARGEUR_GRILLE - (NB_COLONNES + 1)*ESPACEMENT) / (2*NB_COLONNES)
 
 ########################################################################
 
