@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+########################################################################
+#  Version du 13 octobre 2019 à 15 h 43
+########################################################################
+"""
 
 from constantes import MODE_GRAPHIQUE, NB_COLONNES, NB_LIGNES
 from mode_graphique import affiche_grille_fenetre
