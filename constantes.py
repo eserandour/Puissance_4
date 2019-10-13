@@ -22,7 +22,7 @@ TEMPS_CHUTE = 0  # 0.1 pour visualiser la chute des pions
 
 NB_PARTIES = 6  # A adapter (un nombre pair plus grand que 1)
 IA_JAUNE = 8  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
-IA_ROUGE = 5 # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
+IA_ROUGE = 5  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
 
 ########################################################################
 
