@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+########################################################################
+#  Version du 13 octobre 2019 à 15 h 43
+########################################################################
+"""
 
 from constantes import NB_COLONNES, NB_LIGNES
 from commun import alignements, colonne_pleine, jouer, inverse
+import random
 import math
 
 
