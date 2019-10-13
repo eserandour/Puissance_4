@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 13 octobre 2019 à 21 h 30
+#  Version du 13 octobre 2019 à 22 h 05
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -27,7 +27,7 @@
 #!/usr/bin/env python
 
 # Pour paramétrer Puissance 4, aller dans le fichier constantes.py
-from constantes import MODE_GRAPHIQUE, NB_PARTIES, IA_JAUNE, IA_ROUGE
+from constantes import MODE_GRAPHIQUE, NB_PARTIES, IA_JAUNE, IA_ROUGE, NB_COLONNES, NB_LIGNES
 from commun import *
 from ia import *
 if MODE_GRAPHIQUE:
