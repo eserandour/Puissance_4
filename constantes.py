@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 13 octobre 2019 à 21 h 30
+#  Version du 14 octobre 2019 à 23 h 17
 ########################################################################
 """
 
@@ -12,8 +12,8 @@
 NB_PARTIES = 6  # A adapter (un nombre pair plus grand que 1)
 # Pour Ordinateur contre Ordinateur : IA_JAUNE et IA_ROUGE
 # Pour Humain contre Ordinateur : IA_ROUGE
-IA_JAUNE = 8  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
-IA_ROUGE = 5  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
+IA_JAUNE = 5  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
+IA_ROUGE = 8  # Numéro de l'IA en compétition (entre 0 et 9 actuellement)
 
 ########################################################################
 
@@ -36,10 +36,11 @@ ESPACEMENT = LARGEUR_GRILLE / 64  # Espace entre 2 trous de la grille
 
 
 ########################################################################
-# TAILLE DE LA GRILLE
+# CONTRAINTES DU JEU
 ########################################################################
 
-NB_COLONNES = 7  # A adapter
-NB_LIGNES = 6  # A adapter
+NB_COLONNES = 7  # Nombre de colonnes de la grille de jeu
+NB_LIGNES = 6  # Nombre de lignes de la grille de jeu
+ALIGNEMENT = 4  # Nombre de pions à aligner pour gagner
 
 ########################################################################
