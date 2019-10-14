@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 14 octobre 2019 à 19 h 32
+#  Version du 14 octobre 2019 à 23 h 17
 ########################################################################
 """
 
-from constantes import MODE_GRAPHIQUE, NB_COLONNES, NB_LIGNES
+from constantes import MODE_GRAPHIQUE, NB_COLONNES, NB_LIGNES, ALIGNEMENT
 from mode_graphique import affiche_grille_fenetre, affiche_gagnant_fenetre, affiche_aucun_gagnant_fenetre, affiche_joueur_fenetre
 import math
 
@@ -196,7 +196,7 @@ def fin_partie(positions, couleur, victoires):
     [jaunes, rouges, nulles] = victoires
     # On teste si la partie est finie
     fin = False
-    if alignements(positions, 4, couleur):
+    if alignements(positions, ALIGNEMENT, couleur):
         fin = True
         if couleur == 'yellow':
             jaunes += 1
