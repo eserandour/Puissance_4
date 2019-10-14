@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 13 octobre 2019 à 21 h 30
+#  Version du 14 octobre 2019 à 23 h 17
 ########################################################################
 """
 
-from constantes import NB_COLONNES, NB_LIGNES
-from commun import alignements, colonne_pleine, jouer, inverse
+from constantes import NB_COLONNES, NB_LIGNES, ALIGNEMENT
+from commun import alignements, colonne_pleine, jouer, inverse, initialise_liste_positions
 import random
 
 
@@ -25,19 +25,61 @@ def jouer_ordi_hasard(positions, couleur):
 
 ########################################################################
 
+def poids_cases(nbPions):
+    """Calcule le poids des cases"""
+    """[3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3] pour une grille 7x6"""
+    positions = initialise_liste_positions()
+    # Sur les horizontales
+    for j in range(NB_LIGNES):
+        for i in range(NB_COLONNES-nbPions+1):
+            for k in range(nbPions):
+                positions[NB_COLONNES*j+i+k] += 1
+    # Sur les verticales
+    for j in range(NB_LIGNES-nbPions+1):
+        for i in range(NB_COLONNES):
+            for k in range(nbPions):
+                positions[NB_COLONNES*j+i+k*NB_COLONNES] += 1
+    # Sur les diagonales montantes
+    for j in range(NB_LIGNES-nbPions+1):
+        for i in range(NB_COLONNES-nbPions+1):
+            for k in range(nbPions):
+                positions[NB_COLONNES*j+i+k*NB_COLONNES+k] += 1
+    # Sur les diagonales descendantes
+    for j in range(nbPions-1, NB_LIGNES):
+        for i in range(NB_COLONNES-nbPions+1):
+            for k in range(nbPions):
+                positions[NB_COLONNES*j+i-k*NB_COLONNES+k] += 1
+    return positions
+
+########################################################################
+
+def liste_indices_maximum(liste):
+    """Renvoie les indices des maximums d'une liste"""
+    maxi = max(liste)
+    longueur = len(liste)
+    indices = []
+    for i in range(longueur):
+        if liste[i] == maxi:
+            indices += [i]
+    return indices
+
+########################################################################
+
 def jouer_ordi_poids_cases(positions, couleur):
-    """L'ordinateur joue en ne tenant compte que du poids des cases de la grille (7x6) potentiellement victorieuses"""
-    POIDS_POSITIONS = [3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3]
-    poids_colonne = [0] * NB_COLONNES
+    """L'ordinateur joue en ne tenant compte que du poids des cases de la grille potentiellement victorieuses"""
+    poidsCases = poids_cases(ALIGNEMENT)
+    poidsColonnes = [0] * NB_COLONNES
     for colonne in range(1, NB_COLONNES + 1):
         if not colonne_pleine(positions, colonne):
             position = colonne - 1
             while positions[position]:
                 position += NB_COLONNES
-            poids_colonne[colonne - 1] = POIDS_POSITIONS[position]
+            poidsColonnes[colonne - 1] += poidsCases[position]
         else:
-            poids_colonne[colonne - 1] = 0
-        colonne = poids_colonne.index(max(poids_colonne)) + 1
+            poidsColonnes[colonne - 1] += 0
+    listeIndicesPoidsMaximum = liste_indices_maximum(poidsColonnes)
+    # Si plusieurs cases sont possibles (même poids), on tire au hasard
+    colonne = 1 + random.choice(listeIndicesPoidsMaximum)
     return jouer(positions, couleur, colonne)
 
 ########################################################################
@@ -60,10 +102,10 @@ def position_potentielle(positions, colonne, ligne):
     """ """
     test = False
     if colonne >= 1 and colonne <= NB_COLONNES and ligne >= 1 and ligne <= NB_LIGNES:
-        if positions[position(colonne, ligne)] == 0: # Position libre
+        if positions[position(colonne, ligne)] == 0:  # Position libre
             test = True
             if ligne > 1:
-                if positions[position(colonne, ligne - 1)] == 0: # Ligne support inexistante
+                if positions[position(colonne, ligne - 1)] == 0:  # Ligne support inexistante
                     test = False
     return test
 
@@ -71,12 +113,12 @@ def position_potentielle(positions, colonne, ligne):
 
 def meilleure_position(positionsPotentielles):
     """ """
-    POIDS_POSITIONS = [3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3]
+    poidsCases = poids_cases(ALIGNEMENT)
     poidsMax = 0
     longueurListe = len(positionsPotentielles)
     for i in range(longueurListe):
-        if POIDS_POSITIONS[positionsPotentielles[i]] > poidsMax:
-            poidsMax = POIDS_POSITIONS[positionsPotentielles[i]]
+        if poidsCases[positionsPotentielles[i]] > poidsMax:
+            poidsMax = poidsCases[positionsPotentielles[i]]
             iMax = i
     return positionsPotentielles[iMax]
 
