@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 14 octobre 2019 à 17 h 55
+#  Version du 14 octobre 2019 à 18 h 12
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -88,9 +88,9 @@ def competition(couleur, ia1, ia2):
                 finPartie, couleurJoueur, victoires = fin_partie(listePositions, couleurJoueur, victoires)  # Teste si la partie est finie
         # Bilan
         nbCoupsGagnant = analyse_positions(listePositions)
-        affiche_statistiques_console(victoires[0], victoires[1], victoires[2])  # Jaunes, Rouges, Nulles
+        affiche_statistiques_console(victoires)  # Jaunes, Rouges, Nulles
         if MODE_GRAPHIQUE:
-            affiche_statistiques_fenetre(victoires[0], victoires[1], victoires[2])  # Jaunes, Rouges, Nulles
+            affiche_statistiques_fenetre(victoires)  # Jaunes, Rouges, Nulles
         # Initialisation
         listePositions = initialise_liste_positions()
         finPartie = False
