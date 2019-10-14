@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 14 octobre 2019 à 20 h 28
+#  Version du 14 octobre 2019 à 20 h 44
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -36,24 +36,14 @@ if MODE_GRAPHIQUE:
 
 
 
-# Variables globales
-couleurJoueur = ''
-victoires = [0] * 3  # Jaunes, Rouges, Nulles
-
-########################################################################
-
-
-
-
 ########################################################################
 
 def competition(couleur, ia1, ia2):
-    """ """
-    global couleurJoueur
-    global victoires
+    """Compétition entre 2 IA"""
     listePositions = initialise_liste_positions()
-    # ia1 joue en premier sur la moitié des parties
+    victoires = [0] * 3  # Jaunes, Rouges, Nulles
     finPartie = False
+    # ia1 joue en premier sur la moitié des parties
     for i in range(NB_PARTIES // 2):
         affiche_joueur_qui_commence_console(couleur)
         if MODE_GRAPHIQUE:
