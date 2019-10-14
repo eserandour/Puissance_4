@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 14 octobre 2019 à 20 h 59
+#  Version du 14 octobre 2019 à 23 h 17
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
