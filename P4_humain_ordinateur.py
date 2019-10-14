@@ -5,7 +5,7 @@
 #  Puissance 4 - Humain contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 14 octobre 2019 à 18 h 20
+#  Version du 14 octobre 2019 à 19 h 32
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -32,7 +32,6 @@ from commun import *
 from ia import *
 if MODE_GRAPHIQUE:
     from mode_graphique import *
-import math
 import random
 
 
@@ -43,26 +42,7 @@ finPartie = True
 listePositions = []
 couleurJoueur = ''
 victoires = [0] * 3  # Jaunes, Rouges, Nulles
-nbCoupsGagnant = 0
 blocageJoueur = False
-
-########################################################################
-
-
-
-########################################################################
-# ANALYSE
-########################################################################
-
-def analyse_positions(positions):
-    """Analyse les positions"""
-    global nbCoupsGagnant
-    # Nombre de coups du gagnant
-    nbPositionsPleines = NB_LIGNES*NB_COLONNES
-    for i in range(NB_LIGNES*NB_COLONNES):
-        if positions[i] == 0:
-            nbPositionsPleines -= 1
-    nbCoupsGagnant = math.ceil(nbPositionsPleines/2)  ## Arrondi à l'entier supérieur
 
 ########################################################################
 
@@ -112,7 +92,6 @@ def mouse_clic(event):
                     finPartie, couleurJoueur, victoires = fin_partie(listePositions, couleurJoueur, victoires)  # Teste si la partie est finie
                 if finPartie:
                     # Bilan
-                    nbCoupsGagnant = analyse_positions(listePositions)
                     affiche_victoires_console(victoires)  # Jaunes, Rouges, Nulles
                     affiche_victoires_fenetre(victoires)  # Jaunes, Rouges, Nulles
                 blocageJoueur = False
