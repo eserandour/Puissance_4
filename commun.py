@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 14 octobre 2019 à 18 h 20
+#  Version du 14 octobre 2019 à 19 h 32
 ########################################################################
 """
 
 from constantes import MODE_GRAPHIQUE, NB_COLONNES, NB_LIGNES
 from mode_graphique import affiche_grille_fenetre, affiche_gagnant_fenetre, affiche_aucun_gagnant_fenetre, affiche_joueur_fenetre
+import math
 
 
 
@@ -53,9 +54,9 @@ def affiche_joueur_console(couleur):
 def affiche_gagnant_console(couleur):
     """Affichage du gagnant dans la console"""
     if couleur == 'yellow':
-        print('Les jaunes gagnent')
+        print('Les jaunes gagnent', end='')
     elif couleur == 'red':
-        print('Les rouges gagnent')
+        print('Les rouges gagnent', end='')
 
 ########################################################################
 
@@ -203,6 +204,8 @@ def fin_partie(positions, couleur, victoires):
             rouges += 1
         # On affiche le gagnant
         affiche_gagnant_console(couleur)
+        nbCoups = analyse_victoire(positions)
+        print(" en", nbCoups, "coups")
         if MODE_GRAPHIQUE:
             affiche_gagnant_fenetre(couleur)
     elif grille_pleine(positions):
@@ -220,5 +223,23 @@ def fin_partie(positions, couleur, victoires):
             affiche_joueur_fenetre(couleur)
     victoires = [jaunes, rouges, nulles]
     return fin, couleur, victoires
+
+########################################################################
+
+
+
+
+########################################################################
+# ANALYSE
+########################################################################
+
+def analyse_victoire(positions):
+    """Analyse la victoire"""
+    # Nombre de coups du gagnant
+    nbPositionsPleines = NB_LIGNES*NB_COLONNES
+    for i in range(NB_LIGNES*NB_COLONNES):
+        if positions[i] == 0:
+            nbPositionsPleines -= 1
+    return math.ceil(nbPositionsPleines/2)  ## Arrondi à l'entier supérieur
 
 ########################################################################
