@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 13 octobre 2019 à 21 h 30
+#  Version du 14 octobre 2019 à 17 h 55
 ########################################################################
 """
 
 from constantes import MODE_GRAPHIQUE, NB_COLONNES, NB_LIGNES
-from mode_graphique import affiche_grille_fenetre
+from mode_graphique import affiche_grille_fenetre, affiche_gagnant_fenetre, affiche_aucun_gagnant_fenetre, affiche_joueur_fenetre
 
 
 
@@ -186,5 +186,38 @@ def jouer(positions, couleur, colonne):
     if MODE_GRAPHIQUE:
         affiche_grille_fenetre(colonne, ligneSupport, couleur)
     return positions
+
+########################################################################
+
+def fin_partie(positions, couleur, victoires):
+    """ Test de fin de partie"""
+    [jaunes, rouges, nulles] = victoires
+    # On teste si la partie est finie
+    fin = False
+    if alignements(positions, 4, couleur):
+        fin = True
+        if couleur == 'yellow':
+            jaunes += 1
+        elif couleur == 'red':
+            rouges += 1
+        # On affiche le gagnant
+        affiche_gagnant_console(couleur)
+        if MODE_GRAPHIQUE:
+            affiche_gagnant_fenetre(couleur)
+    elif grille_pleine(positions):
+        fin = True
+        nulles += 1
+        # On affiche aucun gagnant
+        affiche_aucun_gagnant_console()
+        if MODE_GRAPHIQUE:
+            affiche_aucun_gagnant_fenetre()
+    else:
+        couleur = inverse(couleur)
+        # On affiche qui doit jouer
+        affiche_joueur_console(couleur)
+        if MODE_GRAPHIQUE:
+            affiche_joueur_fenetre(couleur)
+    victoires = [jaunes, rouges, nulles]
+    return fin, couleur, victoires
 
 ########################################################################
