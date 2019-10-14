@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 14 octobre 2019 à 18 h 12
+#  Version du 14 octobre 2019 à 18 h 20
 ########################################################################
 """
 
@@ -65,8 +65,8 @@ def affiche_aucun_gagnant_console():
 
 ########################################################################
 
-def affiche_statistiques_console(victoires):
-    """Affichage des statistiques"""
+def affiche_victoires_console(victoires):
+    """Affichage du nombre de victoires dans la console"""
     [jaunes, rouges, nulles] = victoires
     print('Jaunes : ' + str(jaunes))  # Victoires jaunes
     print('Rouges : ' + str(rouges))  # Victoires rouges
