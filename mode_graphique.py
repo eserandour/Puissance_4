@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 13 octobre 2019 à 21 h 30
+#  Version du 14 octobre 2019 à 18 h 12
 ########################################################################
 """
 
@@ -169,10 +169,11 @@ def affiche_aucun_gagnant_fenetre():
 
 ########################################################################
 
-def affiche_statistiques_fenetre(victoiresJaunes, victoiresRouges, partiesNulles):
+def affiche_statistiques_fenetre(victoires):
     """Affichage des statistiques dans la fenêtre Tkinter"""
-    scoreJaunes['text'] = 'Jaunes : ' + str(victoiresJaunes)
-    scoreRouges['text'] = 'Rouges : ' + str(victoiresRouges)
+    [jaunes, rouges, nulles] = victoires
+    scoreJaunes['text'] = 'Jaunes : ' + str(jaunes)
+    scoreRouges['text'] = 'Rouges : ' + str(rouges)
 
 ########################################################################
 
