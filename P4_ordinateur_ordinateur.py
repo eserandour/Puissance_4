@@ -5,7 +5,7 @@
 #  Puissance 4 - Ordinateur contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 13 octobre 2019 à 22 h 05
+#  Version du 14 octobre 2019 à 17 h 55
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -39,9 +39,7 @@ import math
 
 # Variables globales
 couleurJoueur = ''
-victoiresJaunes = 0
-victoiresRouges = 0
-partiesNulles = 0
+victoires = [0] * 3  # Jaunes, Rouges, Nulles
 nbCoupsGagnant = 0
 
 ########################################################################
@@ -70,44 +68,10 @@ def analyse_positions(positions):
 
 ########################################################################
 
-def fin_partie(positions):
-    """ Test de fin de partie"""
-    global couleurJoueur
-    global victoiresJaunes
-    global victoiresRouges
-    global partiesNulles
-    # On teste si la partie est finie
-    fin = False
-    if alignements(positions, 4, couleurJoueur):
-        fin = True
-        if couleurJoueur == 'yellow':
-            victoiresJaunes += 1
-        elif couleurJoueur == 'red':
-            victoiresRouges += 1
-        # On affiche le gagnant
-        affiche_gagnant_console(couleurJoueur)
-        if MODE_GRAPHIQUE:
-            affiche_gagnant_fenetre(couleurJoueur)
-    elif grille_pleine(positions):
-        fin = True
-        partiesNulles += 1
-        # On affiche aucun gagnant
-        affiche_aucun_gagnant_console()
-        if MODE_GRAPHIQUE:
-            affiche_aucun_gagnant_fenetre()
-    else:
-        couleurJoueur = inverse(couleurJoueur)
-        # On affiche qui doit jouer
-        affiche_joueur_console(couleurJoueur)
-        if MODE_GRAPHIQUE:
-            affiche_joueur_fenetre(couleurJoueur)
-    return fin
-
-########################################################################
-
 def competition(couleur, ia1, ia2):
     """ """
     global couleurJoueur
+    global victoires
     listePositions = initialise_liste_positions()
     # ia1 joue en premier sur la moitié des parties
     finPartie = False
@@ -118,15 +82,15 @@ def competition(couleur, ia1, ia2):
         couleurJoueur = couleur
         while not finPartie:
             listePositions = jouer_ordi_ia(listePositions, couleurJoueur, ia1)
-            finPartie = fin_partie(listePositions)  # Teste si la partie est finie
+            finPartie, couleurJoueur, victoires = fin_partie(listePositions, couleurJoueur, victoires)  # Teste si la partie est finie
             if not finPartie:
                 listePositions = jouer_ordi_ia(listePositions, couleurJoueur, ia2)
-                finPartie = fin_partie(listePositions)  # Teste si la partie est finie
+                finPartie, couleurJoueur, victoires = fin_partie(listePositions, couleurJoueur, victoires)  # Teste si la partie est finie
         # Bilan
         nbCoupsGagnant = analyse_positions(listePositions)
-        affiche_statistiques_console(victoiresJaunes, victoiresRouges, partiesNulles)
+        affiche_statistiques_console(victoires[0], victoires[1], victoires[2])  # Jaunes, Rouges, Nulles
         if MODE_GRAPHIQUE:
-            affiche_statistiques_fenetre(victoiresJaunes, victoiresRouges, partiesNulles)
+            affiche_statistiques_fenetre(victoires[0], victoires[1], victoires[2])  # Jaunes, Rouges, Nulles
         # Initialisation
         listePositions = initialise_liste_positions()
         finPartie = False
