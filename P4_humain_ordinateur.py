@@ -5,7 +5,7 @@
 #  Puissance 4 - Humain contre Ordinateur avec IA
 #
 #  Copyright 2016-2019 - Eric Sérandour
-#  Version du 14 octobre 2019 à 19 h 32
+#  Version du 14 octobre 2019 à 19 h 39
 #
 #  This program is free software; you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as
@@ -55,9 +55,9 @@ def mouse_clic(event):
     "Gestion du clic de souris"
     global finPartie
     global listePositions
-    global blocageJoueur  # Indispensable pour les cas où l'on clique trop vite
     global couleurJoueur
     global victoires
+    global blocageJoueur  # Indispensable pour les cas où l'on clique trop vite
     if not blocageJoueur:
         if finPartie:
             blocageJoueur = True
