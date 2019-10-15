@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 15 octobre 2019 à 21 h 35
+#  Version du 15 octobre 2019 à 21 h 36
 ########################################################################
 """
 
@@ -141,7 +141,7 @@ def meilleure_position(positionsPotentielles):
     meilleuresPositionsPotentielles = []
     for i in range(len(indicesPoidsMaximum)):
         meilleuresPositionsPotentielles += [positionsPotentielles[indicesPoidsMaximum[i]]]
-    # Si plusieurs positions sont possibles (même poids), on tire au hasard un position
+    # Si plusieurs positions sont possibles (même poids), on tire au hasard une position
     return random.choice(meilleuresPositionsPotentielles)
 
 ########################################################################
