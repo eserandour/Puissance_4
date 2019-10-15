@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 14 octobre 2019 à 23 h 17
+#  Version du 15 octobre 2019 à 22 h 27
 ########################################################################
 """
 
@@ -90,7 +90,7 @@ def initialise_liste_positions():
 ########################################################################
 
 def alignement(somme, nbPions, couleur):
-    """Analyse la somme dont il est question dans alignements()"""
+    """Analyse la somme dont il est question dans alignements() pour détermminer si des pions sont alignés"""
     pionsAlignes = False
     if (couleur == 'yellow' and somme == nbPions) or (couleur == 'red' and somme == -nbPions):
         pionsAlignes = True
