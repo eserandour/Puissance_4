@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 15 octobre 2019 à 14 h 30
+#  Version du 15 octobre 2019 à 21 h 08
 ########################################################################
 """
 
@@ -56,9 +56,8 @@ def poids_cases(nbPions):
 def liste_indices_maximum(liste):
     """Renvoie les indices des maximums d'une liste"""
     maxi = max(liste)
-    longueur = len(liste)
     indices = []
-    for i in range(longueur):
+    for i in range(len(liste)):
         if liste[i] == maxi:
             indices += [i]
     return indices
@@ -78,7 +77,7 @@ def jouer_ordi_poids_cases(positions, couleur):
         else:
             poidsColonnes[colonne - 1] += 0
     indicesPoidsMaximum = liste_indices_maximum(poidsColonnes)
-    # Si plusieurs cases sont possibles (même poids), on tire au hasard
+    # Si plusieurs colonnes sont possibles (même poids), on tire au hasard une colonne
     colonne = 1 + random.choice(indicesPoidsMaximum)
     return jouer(positions, couleur, colonne)
 
@@ -116,7 +115,7 @@ def colonne_extraite(position):
 ########################################################################
 
 def position_potentielle(positions, colonne, ligne):
-    """ """
+    """Teste si une position est possible (case vide et support pour soutenir le pion)"""
     test = False
     if colonne >= 1 and colonne <= NB_COLONNES and ligne >= 1 and ligne <= NB_LIGNES:
         if positions[position(colonne, ligne)] == 0:  # Position libre
@@ -129,7 +128,7 @@ def position_potentielle(positions, colonne, ligne):
 ########################################################################
 
 def meilleure_position(positionsPotentielles):
-    """ """
+    """Détermine la meilleure position en s'appuyant sur le poids des cases"""
     # Calcule le poids des cases
     poidsCases = poids_cases(ALIGNEMENT)
     # Détermine le poids des positions potentielles
@@ -142,9 +141,8 @@ def meilleure_position(positionsPotentielles):
     meilleuresPositionsPotentielles = []
     for i in range(len(indicesPoidsMaximum)):
         meilleuresPositionsPotentielles += [positionsPotentielles[indicesPoidsMaximum[i]]]
-    # Si plusieurs positions sont possibles (même poids), on tire au hasard
-    meilleurePosition = random.choice(meilleuresPositionsPotentielles)
-    return meilleurePosition
+    # Si plusieurs positions sont possibles (même poids), on tire au hasard un position
+    return random.choice(meilleuresPositionsPotentielles)
 
 ########################################################################
 """ ANCIENNE VERSION (SANS HASARD EN CAS D'EGALITE DE POIDS)
@@ -162,7 +160,7 @@ def meilleure_position(positionsPotentielles):
 ########################################################################
 
 def positions_potentielles(positions, listeAlignements):
-    """ """
+    """Retourne un colonne où jouer à partir de l'ensemble des positions potentielles"""
     positionsPotentielles = []
     if listeAlignements != []:
         nbPions = listeAlignements[0]
@@ -210,19 +208,19 @@ def priorite(positions, nbPions, couleur):
 ########################################################################
 
 def jouer_ordi_ia0(positions, couleur):
-    """ """
+    """IA0 joue"""
     return jouer_ordi_hasard(positions, couleur)                     # H   : L'IA joue au hasard
 
 ########################################################################
 
 def jouer_ordi_ia1(positions, couleur):
-    """ """
+    """IA1 joue"""
     return jouer_ordi_poids_cases(positions, couleur)                # PH  : L'IA joue dans la case qui a le plus de poids
 
 ########################################################################
 
 def jouer_ordi_ia2(positions, couleur):
-    """ """
+    """IA2 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA3PH = priorite(positions, 3, couleur)
     colA2PH = priorite(positions, 2, couleur)
@@ -234,7 +232,7 @@ def jouer_ordi_ia2(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia3(positions, couleur):
-    """ """
+    """IA3 joue"""
     couleurAdversaire = inverse(couleur)
     colB4PH = priorite(positions, 4, couleurAdversaire)
     colB3PH = priorite(positions, 3, couleurAdversaire)
@@ -247,7 +245,7 @@ def jouer_ordi_ia3(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia4(positions, couleur):
-    """ """
+    """IA4 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA3PH = priorite(positions, 3, couleur)
     colA2PH = priorite(positions, 2, couleur)
@@ -266,7 +264,7 @@ def jouer_ordi_ia4(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia5(positions, couleur):
-    """ """
+    """IA5 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA3PH = priorite(positions, 3, couleur)
     colA2PH = priorite(positions, 2, couleur)
@@ -285,7 +283,7 @@ def jouer_ordi_ia5(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia6(positions, couleur):
-    """ """
+    """IA6 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA3PH = priorite(positions, 3, couleur)
     colA2PH = priorite(positions, 2, couleur)
@@ -304,7 +302,7 @@ def jouer_ordi_ia6(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia7(positions, couleur):
-    """ """
+    """IA7 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA3PH = priorite(positions, 3, couleur)
     colA2PH = priorite(positions, 2, couleur)
@@ -323,7 +321,7 @@ def jouer_ordi_ia7(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia8(positions, couleur):
-    """ """
+    """IA8 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA2PH = priorite(positions, 2, couleur)
     couleurAdversaire = inverse(couleur)
@@ -338,7 +336,7 @@ def jouer_ordi_ia8(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia9(positions, couleur):
-    """ """
+    """IA9 joue"""
     colA4PH = priorite(positions, 4, couleur)
     colA2PH = priorite(positions, 2, couleur)
     couleurAdversaire = inverse(couleur)
@@ -353,7 +351,7 @@ def jouer_ordi_ia9(positions, couleur):
 ########################################################################
 
 def jouer_ordi_ia(positions, couleur, ia):
-    """ """
+    """L'IA choisie joue"""
     if ia == 0: positions = jouer_ordi_ia0(positions, couleur)
     if ia == 1: positions = jouer_ordi_ia1(positions, couleur)
     if ia == 2: positions = jouer_ordi_ia2(positions, couleur)
