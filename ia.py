@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 14 octobre 2019 à 23 h 17
+#  Version du 15 octobre 2019 à 14 h 01
 ########################################################################
 """
 
 from constantes import NB_COLONNES, NB_LIGNES, ALIGNEMENT
-from commun import alignements, colonne_pleine, jouer, inverse, initialise_liste_positions
+from commun import alignements, colonne_pleine, jouer, inverse
 import random
 
 
@@ -28,7 +28,7 @@ def jouer_ordi_hasard(positions, couleur):
 def poids_cases(nbPions):
     """Calcule le poids des cases"""
     """[3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3] pour une grille 7x6"""
-    positions = initialise_liste_positions()
+    positions = [0] * NB_COLONNES*NB_LIGNES
     # Sur les horizontales
     for j in range(NB_LIGNES):
         for i in range(NB_COLONNES-nbPions+1):
@@ -77,11 +77,28 @@ def jouer_ordi_poids_cases(positions, couleur):
             poidsColonnes[colonne - 1] += poidsCases[position]
         else:
             poidsColonnes[colonne - 1] += 0
-    listeIndicesPoidsMaximum = liste_indices_maximum(poidsColonnes)
+    indicesPoidsMaximum = liste_indices_maximum(poidsColonnes)
     # Si plusieurs cases sont possibles (même poids), on tire au hasard
-    colonne = 1 + random.choice(listeIndicesPoidsMaximum)
+    colonne = 1 + random.choice(indicesPoidsMaximum)
     return jouer(positions, couleur, colonne)
 
+########################################################################
+""" ANCIENNE VERSION (SANS HASARD EN CAS D'EGALITE DE POIDS)
+def jouer_ordi_poids_cases(positions, couleur):
+    "L'ordinateur joue en ne tenant compte que du poids des cases de la grille (7x6) potentiellement victorieuses"
+    POIDS_POSITIONS = [3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3]
+    poidsColonne = [0] * NB_COLONNES
+    for colonne in range(1, NB_COLONNES + 1):
+        if not colonne_pleine(positions, colonne):
+            position = colonne - 1
+            while positions[position]:
+                position += NB_COLONNES
+            poidsColonne[colonne - 1] = POIDS_POSITIONS[position]
+        else:
+            poidsColonne[colonne - 1] = 0
+        colonne = poidsColonne.index(max(poidsColonne)) + 1
+    return jouer(positions, couleur, colonne)
+"""
 ########################################################################
 
 def position(colonne, ligne):
@@ -113,15 +130,35 @@ def position_potentielle(positions, colonne, ligne):
 
 def meilleure_position(positionsPotentielles):
     """ """
+    # Calcule le poids des cases
     poidsCases = poids_cases(ALIGNEMENT)
+    # Détermine le poids des positions potentielles
+    poidsPositionsPotentielles = []
+    for i in range(len(positionsPotentielles)):
+        poidsPositionsPotentielles += [poidsCases[positionsPotentielles[i]]]
+    # Détermine les indices du poids maximum dans la liste ci-dessus
+    indicesPoidsMaximum = liste_indices_maximum(poidsPositionsPotentielles)
+    # Extrait les meilleures positions potentielles (celles qui ont un poids maximum)
+    meilleuresPositionsPotentielles = []
+    for i in range(len(indicesPoidsMaximum)):
+        meilleuresPositionsPotentielles += [positionsPotentielles[indicesPoidsMaximum[i]]]
+    # Si plusieurs positions sont possibles (même poids), on tire au hasard
+    meilleurePosition = random.choice(meilleuresPositionsPotentielles)
+    return meilleurePosition
+
+########################################################################
+""" ANCIENNE VERSION (SANS HASARD EN CAS D'EGALITE DE POIDS)
+def meilleure_position(positionsPotentielles):
+    ""
+    POIDS_POSITIONS = [3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3]
     poidsMax = 0
     longueurListe = len(positionsPotentielles)
     for i in range(longueurListe):
-        if poidsCases[positionsPotentielles[i]] > poidsMax:
-            poidsMax = poidsCases[positionsPotentielles[i]]
+        if POIDS_POSITIONS[positionsPotentielles[i]] > poidsMax:
+            poidsMax = POIDS_POSITIONS[positionsPotentielles[i]]
             iMax = i
     return positionsPotentielles[iMax]
-
+"""
 ########################################################################
 
 def positions_potentielles(positions, listeAlignements):
