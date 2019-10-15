@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 15 octobre 2019 à 21 h 08
+#  Version du 15 octobre 2019 à 21 h 35
 ########################################################################
 """
 
@@ -101,7 +101,7 @@ def jouer_ordi_poids_cases(positions, couleur):
 ########################################################################
 
 def position(colonne, ligne):
-    """Convertit une position de la grille vers la liste positions[]"""
+    """Déduit d'une position dans la grille une position dans la liste positions[]"""
     position = (colonne-1) + (ligne-1)*NB_COLONNES
     return position
 
