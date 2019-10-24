@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 15 octobre 2019 à 21 h 36
+#  Version du 24 octobre 2019 à 21 h 00
 ########################################################################
 """
 
@@ -350,18 +350,38 @@ def jouer_ordi_ia9(positions, couleur):
 
 ########################################################################
 
+def jouer_ordi_ia10(positions, couleur):
+    """IA10 joue"""
+    colA4PH = priorite(positions, 4, couleur)
+    colA3PH = priorite(positions, 3, couleur)
+    colA2PH = priorite(positions, 2, couleur)
+    couleurAdversaire = inverse(couleur)
+    colB4PH = priorite(positions, 4, couleurAdversaire)
+    colB3PH = priorite(positions, 3, couleurAdversaire)
+    colB2PH = priorite(positions, 2, couleurAdversaire)
+    if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en priorité d'empêcher l'adversaire d'aligner 4 pions
+    elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
+    elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
+    elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
+    elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
+    else: return jouer_ordi_poids_cases(positions, couleur)          # PH   : L'IA joue dans la case qui a le plus de poids
+
+########################################################################
+
 def jouer_ordi_ia(positions, couleur, ia):
     """L'IA choisie joue"""
     if ia == 0: positions = jouer_ordi_ia0(positions, couleur)
-    if ia == 1: positions = jouer_ordi_ia1(positions, couleur)
-    if ia == 2: positions = jouer_ordi_ia2(positions, couleur)
-    if ia == 3: positions = jouer_ordi_ia3(positions, couleur)
-    if ia == 4: positions = jouer_ordi_ia4(positions, couleur)
-    if ia == 5: positions = jouer_ordi_ia5(positions, couleur)
-    if ia == 6: positions = jouer_ordi_ia6(positions, couleur)
-    if ia == 7: positions = jouer_ordi_ia7(positions, couleur)
-    if ia == 8: positions = jouer_ordi_ia8(positions, couleur)
-    if ia == 9: positions = jouer_ordi_ia9(positions, couleur)
+    elif ia == 1: positions = jouer_ordi_ia1(positions, couleur)
+    elif ia == 2: positions = jouer_ordi_ia2(positions, couleur)
+    elif ia == 3: positions = jouer_ordi_ia3(positions, couleur)
+    elif ia == 4: positions = jouer_ordi_ia4(positions, couleur)
+    elif ia == 5: positions = jouer_ordi_ia5(positions, couleur)
+    elif ia == 6: positions = jouer_ordi_ia6(positions, couleur)
+    elif ia == 7: positions = jouer_ordi_ia7(positions, couleur)
+    elif ia == 8: positions = jouer_ordi_ia8(positions, couleur)
+    elif ia == 9: positions = jouer_ordi_ia9(positions, couleur)
+    elif ia == 10: positions = jouer_ordi_ia10(positions, couleur)
     return positions
 
 ########################################################################
