@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 24 octobre 2019 à 21 h 00
+#  Version du 30 juillet 2020 à 01 h 26
 ########################################################################
 """
 
 from constantes import NB_COLONNES, NB_LIGNES, ALIGNEMENT
-from commun import alignements, colonne_pleine, jouer, inverse
+from commun import alignements, alignements_troues, colonne_pleine, jouer, inverse
 import random
 
 
@@ -28,28 +28,28 @@ def jouer_ordi_hasard(positions, couleur):
 def poids_cases(nbPions):
     """Calcule le poids des cases"""
     """[3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3] pour une grille 7x6"""
-    positions = [0] * NB_COLONNES*NB_LIGNES
+    poids = [0] * NB_COLONNES*NB_LIGNES
     # Sur les horizontales
     for j in range(NB_LIGNES):
         for i in range(NB_COLONNES-nbPions+1):
             for k in range(nbPions):
-                positions[NB_COLONNES*j+i+k] += 1
+                poids[NB_COLONNES*j+i+k] += 1
     # Sur les verticales
     for j in range(NB_LIGNES-nbPions+1):
         for i in range(NB_COLONNES):
             for k in range(nbPions):
-                positions[NB_COLONNES*j+i+k*NB_COLONNES] += 1
+                poids[NB_COLONNES*j+i+k*NB_COLONNES] += 1
     # Sur les diagonales montantes
     for j in range(NB_LIGNES-nbPions+1):
         for i in range(NB_COLONNES-nbPions+1):
             for k in range(nbPions):
-                positions[NB_COLONNES*j+i+k*NB_COLONNES+k] += 1
+                poids[NB_COLONNES*j+i+k*NB_COLONNES+k] += 1
     # Sur les diagonales descendantes
     for j in range(nbPions-1, NB_LIGNES):
         for i in range(NB_COLONNES-nbPions+1):
             for k in range(nbPions):
-                positions[NB_COLONNES*j+i-k*NB_COLONNES+k] += 1
-    return positions
+                poids[NB_COLONNES*j+i-k*NB_COLONNES+k] += 1
+    return poids
 
 ########################################################################
 
@@ -159,33 +159,30 @@ def meilleure_position(positionsPotentielles):
 """
 ########################################################################
 
-def positions_potentielles(positions, listeAlignements):
-    """Retourne un colonne où jouer à partir de l'ensemble des positions potentielles"""
+def positions_potentielles(positions, listeAlignementsTroues):
+    """Retourne une colonne où jouer à partir de l'ensemble des positions potentielles"""
     positionsPotentielles = []
-    if listeAlignements != []:
-        nbPions = listeAlignements[0]
-        for i in range(0, len(listeAlignements) // 3):
-            c = listeAlignements[1 + 3*i] # Colonne
-            l = listeAlignements[2 + 3*i] # Ligne
-            d = listeAlignements[3 + 3*i] # Direction
+    if listeAlignementsTroues != []:
+        nbPions = listeAlignementsTroues[0]
+        for i in range(0, len(listeAlignementsTroues) // 3):
+            c = listeAlignementsTroues[1 + 3*i] # Colonne
+            l = listeAlignementsTroues[2 + 3*i] # Ligne
+            d = listeAlignementsTroues[3 + 3*i] # Direction
             if d == "H": # Horizontal
-                if position_potentielle(positions, c - 1, l):
-                    positionsPotentielles += [position(c - 1, l)]
-                if position_potentielle(positions, c + nbPions, l):
-                    positionsPotentielles += [position(c + nbPions, l)]
+                for j in range(nbPions + 1):
+                    if position_potentielle(positions, c + j, l):
+                        positionsPotentielles += [position(c + j, l)]
             if d == "V": # Vertical
                 if position_potentielle(positions, c, l + nbPions):
                     positionsPotentielles += [position(c, l + nbPions)]
             if d == "DM": # Diagonale Montante
-                if position_potentielle(positions, c - 1, l - 1):
-                    positionsPotentielles += [position(c - 1, l - 1)]
-                if position_potentielle(positions, c + nbPions, l + nbPions):
-                    positionsPotentielles += [position(c + nbPions, l + nbPions)]
+                for j in range(nbPions + 1):
+                    if position_potentielle(positions, c + j, l + j):
+                        positionsPotentielles += [position(c + j, l + j)]
             if d == "DD": # Diagonale Descendante
-                if position_potentielle(positions, c - 1, l + 1):
-                    positionsPotentielles += [position(c - 1, l + 1)]
-                if position_potentielle(positions, c + nbPions, l - nbPions):
-                    positionsPotentielles += [position(c + nbPions, l - nbPions)]
+                for j in range(nbPions + 1):
+                    if position_potentielle(positions, c + j, l - j):
+                        positionsPotentielles += [position(c + j, l - j)]
     colonne = -1
     if len(positionsPotentielles) > 0:
         colonne = colonne_extraite(meilleure_position(positionsPotentielles))
@@ -195,8 +192,8 @@ def positions_potentielles(positions, listeAlignements):
 
 def priorite(positions, nbPions, couleur):
     """Retourne une colonne où jouer"""
-    listeAlignements = alignements(positions, nbPions-1, couleur)
-    return positions_potentielles(positions, listeAlignements)
+    listeAlignementsTroues = alignements_troues(positions, nbPions-1, couleur)
+    return positions_potentielles(positions, listeAlignementsTroues)
 
 ########################################################################
 
@@ -369,6 +366,25 @@ def jouer_ordi_ia10(positions, couleur):
 
 ########################################################################
 
+def jouer_ordi_ia11(positions, couleur):
+    """IA11 joue"""
+    colA4PH = priorite(positions, 4, couleur)
+    colA3PH = priorite(positions, 3, couleur)
+    colA2PH = priorite(positions, 2, couleur)
+    couleurAdversaire = inverse(couleur)
+    colB4PH = priorite(positions, 4, couleurAdversaire)
+    colB3PH = priorite(positions, 3, couleurAdversaire)
+    colB2PH = priorite(positions, 2, couleurAdversaire)
+    if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en priorité d'empêcher l'adversaire d'aligner 4 pions
+    elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
+    elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
+    elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
+    elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
+    else: return jouer_ordi_poids_cases(positions, couleur)          # PH   : L'IA joue dans la case qui a le plus de poids
+
+########################################################################
+
 def jouer_ordi_ia(positions, couleur, ia):
     """L'IA choisie joue"""
     if ia == 0: positions = jouer_ordi_ia0(positions, couleur)
@@ -382,6 +398,7 @@ def jouer_ordi_ia(positions, couleur, ia):
     elif ia == 8: positions = jouer_ordi_ia8(positions, couleur)
     elif ia == 9: positions = jouer_ordi_ia9(positions, couleur)
     elif ia == 10: positions = jouer_ordi_ia10(positions, couleur)
+    elif ia == 11: positions = jouer_ordi_ia11(positions, couleur)
     return positions
 
 ########################################################################
