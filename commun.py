@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 30 juillet 2020 à 01 h 26
+#  Version du 30 juillet 2020 à 10 h 13
 ########################################################################
 """
 
@@ -98,9 +98,15 @@ def alignement(somme, nbPions, couleur):
 
 ########################################################################
 
-def alignements(positions, nbPions, couleur):
-    """Teste les alignements d'un nombre de pions donné et les retourne sous forme de liste"""
-    listeAlignements = []
+def alignements_pleins(positions, nbPions, couleur):
+    """Teste les alignements pleins d'un nombre de pions donné et les retourne sous forme de liste"""
+    """
+    4 pions alignés : 1111
+    3 pions alignés : 111
+    2 pions alignés : 11
+    1 pion "aligné" : 1
+    """
+    listeAlignementsPleins = []
     # Vérification des alignements horizontaux
     for j in range(NB_LIGNES):
         for i in range(NB_COLONNES-nbPions+1):
@@ -108,7 +114,7 @@ def alignements(positions, nbPions, couleur):
             for k in range(nbPions):
                 somme += positions[NB_COLONNES*j+i+k]
             if alignement(somme, nbPions, couleur):
-                listeAlignements += [i+1,j+1,"H"]
+                listeAlignementsPleins += [i+1,j+1,"H"]
     # Vérification des alignements verticaux
     for j in range(NB_LIGNES-nbPions+1):
         for i in range(NB_COLONNES):
@@ -116,7 +122,7 @@ def alignements(positions, nbPions, couleur):
             for k in range(nbPions):
                 somme += positions[NB_COLONNES*j+i+k*NB_COLONNES]
             if alignement(somme, nbPions, couleur):
-                listeAlignements += [i+1,j+1,"V"]
+                listeAlignementsPleins += [i+1,j+1,"V"]
     # Vérification des diagonales montantes
     for j in range(NB_LIGNES-nbPions+1):
         for i in range(NB_COLONNES-nbPions+1):
@@ -124,7 +130,7 @@ def alignements(positions, nbPions, couleur):
             for k in range(nbPions):
                 somme += positions[NB_COLONNES*j+i+k*NB_COLONNES+k]
             if alignement(somme, nbPions, couleur):
-                listeAlignements += [i+1,j+1,"DM"]
+                listeAlignementsPleins += [i+1,j+1,"DM"]
     # Vérification des diagonales descendantes
     for j in range(nbPions-1, NB_LIGNES):
         for i in range(NB_COLONNES-nbPions+1):
@@ -132,19 +138,10 @@ def alignements(positions, nbPions, couleur):
             for k in range(nbPions):
                 somme += positions[NB_COLONNES*j+i-k*NB_COLONNES+k]
             if alignement(somme, nbPions, couleur):
-                listeAlignements += [i+1,j+1,"DD"]
-    if listeAlignements != []:
-        listeAlignements = [nbPions] + listeAlignements
-    return listeAlignements
-
-########################################################################
-
-def alignement_troue(somme, nbPions, couleur):
-    """Analyse la somme dont il est question dans alignements() pour détermminer si des pions sont alignés"""
-    pionsAlignes = False
-    if (couleur == 'yellow' and somme == nbPions) or (couleur == 'red' and somme == -nbPions):
-        pionsAlignes = True
-    return pionsAlignes
+                listeAlignementsPleins += [i+1,j+1,"DD"]
+    if listeAlignementsPleins != []:
+        listeAlignementsPleins = [nbPions] + listeAlignementsPleins
+    return listeAlignementsPleins
 
 ########################################################################
 
@@ -162,7 +159,7 @@ def alignements_troues(positions, nbPions, couleur):
             somme = 0
             for k in range(nbPions+1):
                 somme += positions[NB_COLONNES*j+i+k]
-            if alignement_troue(somme, nbPions, couleur):
+            if alignement(somme, nbPions, couleur):
                 listeAlignementsTroues += [i+1,j+1,"H"]
     # Vérification des alignements verticaux
     for j in range(NB_LIGNES-nbPions):
@@ -170,7 +167,7 @@ def alignements_troues(positions, nbPions, couleur):
             somme = 0
             for k in range(nbPions+1):
                 somme += positions[NB_COLONNES*j+i+k*NB_COLONNES]
-            if alignement_troue(somme, nbPions, couleur):
+            if alignement(somme, nbPions, couleur):
                 listeAlignementsTroues += [i+1,j+1,"V"]
     # Vérification des diagonales montantes
     for j in range(NB_LIGNES-nbPions):
@@ -178,7 +175,7 @@ def alignements_troues(positions, nbPions, couleur):
             somme = 0
             for k in range(nbPions+1):
                 somme += positions[NB_COLONNES*j+i+k*NB_COLONNES+k]
-            if alignement_troue(somme, nbPions, couleur):
+            if alignement(somme, nbPions, couleur):
                 listeAlignementsTroues += [i+1,j+1,"DM"]
     # Vérification des diagonales descendantes
     for j in range(nbPions, NB_LIGNES):
@@ -186,7 +183,7 @@ def alignements_troues(positions, nbPions, couleur):
             somme = 0
             for k in range(nbPions+1):
                 somme += positions[NB_COLONNES*j+i-k*NB_COLONNES+k]
-            if alignement_troue(somme, nbPions, couleur):
+            if alignement(somme, nbPions, couleur):
                 listeAlignementsTroues += [i+1,j+1,"DD"]
     if listeAlignementsTroues != []:
         listeAlignementsTroues = [nbPions] + listeAlignementsTroues
@@ -251,7 +248,7 @@ def fin_partie(positions, couleur, victoires):
     [jaunes, rouges, nulles] = victoires
     # On teste si la partie est finie
     fin = False
-    if alignements(positions, ALIGNEMENT, couleur):
+    if alignements_pleins(positions, ALIGNEMENT, couleur):
         fin = True
         if couleur == 'yellow':
             jaunes += 1
