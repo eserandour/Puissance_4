@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 30 juillet 2020 à 11 h 54
+#  Version du 30 juillet 2020 à 12 h 51
 ########################################################################
 """
 
@@ -258,7 +258,7 @@ def jouer_ordi_ia4(positions, couleur):                              # Priorité
     colB3PH = priorite_pleine(positions, 3, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
@@ -277,7 +277,7 @@ def jouer_ordi_ia5(positions, couleur):                              # Priorité
     colB3PH = priorite_pleine(positions, 3, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
@@ -296,7 +296,7 @@ def jouer_ordi_ia6(positions, couleur):                              # Priorité
     colB3PH = priorite_pleine(positions, 3, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
@@ -315,7 +315,7 @@ def jouer_ordi_ia7(positions, couleur):                              # Priorité
     colB3PH = priorite_pleine(positions, 3, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
@@ -332,7 +332,7 @@ def jouer_ordi_ia8(positions, couleur):                              # Priorité
     colB4PH = priorite_pleine(positions, 4, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
     else: return jouer_ordi_poids_cases(positions, couleur)          # PH   : L'IA joue dans la case qui a le plus de poids
@@ -347,7 +347,7 @@ def jouer_ordi_ia9(positions, couleur):                              # Priorité
     colB4PH = priorite_pleine(positions, 4, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
     else: return jouer_ordi_poids_cases(positions, couleur)          # PH   : L'IA joue dans la case qui a le plus de poids
@@ -364,7 +364,7 @@ def jouer_ordi_ia10(positions, couleur):                             # Priorité
     colB3PH = priorite_pleine(positions, 3, couleurAdversaire)
     colB2PH = priorite_pleine(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en priorité d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
@@ -412,7 +412,7 @@ def jouer_ordi_ia14(positions, couleur):                             # Priorité
     colB3PH = priorite_trouee(positions, 3, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
@@ -431,7 +431,7 @@ def jouer_ordi_ia15(positions, couleur):                             # Priorité
     colB3PH = priorite_trouee(positions, 3, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
@@ -450,7 +450,7 @@ def jouer_ordi_ia16(positions, couleur):                             # Priorité
     colB3PH = priorite_trouee(positions, 3, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
@@ -469,7 +469,7 @@ def jouer_ordi_ia17(positions, couleur):                             # Priorité
     colB3PH = priorite_trouee(positions, 3, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
@@ -486,7 +486,7 @@ def jouer_ordi_ia18(positions, couleur):                             # Priorité
     colB4PH = priorite_trouee(positions, 4, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
     else: return jouer_ordi_poids_cases(positions, couleur)          # PH   : L'IA joue dans la case qui a le plus de poids
@@ -501,7 +501,7 @@ def jouer_ordi_ia19(positions, couleur):                             # Priorité
     colB4PH = priorite_trouee(positions, 4, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
     elif colA2PH != -1: return jouer(positions, couleur, colA2PH)    # A2PH : L'IA essaye d'aligner 2 pions
     else: return jouer_ordi_poids_cases(positions, couleur)          # PH   : L'IA joue dans la case qui a le plus de poids
@@ -518,7 +518,7 @@ def jouer_ordi_ia20(positions, couleur):                             # Priorité
     colB3PH = priorite_trouee(positions, 3, couleurAdversaire)
     colB2PH = priorite_trouee(positions, 2, couleurAdversaire)
     if colA4PH != -1: return jouer(positions, couleur, colA4PH)      # A4PH : L'IA essaye en priorité d'aligner 4 pions
-    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye en priorité d'empêcher l'adversaire d'aligner 4 pions
+    elif colB4PH != -1: return jouer(positions, couleur, colB4PH)    # B4PH : L'IA essaye d'empêcher l'adversaire d'aligner 4 pions
     elif colB3PH != -1: return jouer(positions, couleur, colB3PH)    # B3PH : L'IA essaye d'empêcher l'adversaire d'aligner 3 pions
     elif colB2PH != -1: return jouer(positions, couleur, colB2PH)    # B2PH : L'IA essaye d'empêcher l'adversaire d'aligner 2 pions
     elif colA3PH != -1: return jouer(positions, couleur, colA3PH)    # A3PH : L'IA essaye d'aligner 3 pions
