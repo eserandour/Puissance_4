@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 30 juillet 2020 à 11 h 52
+#  Version du 30 juillet 2020 à 11 h 54
 ########################################################################
 """
 
@@ -27,7 +27,7 @@ def jouer_ordi_hasard(positions, couleur):
 
 def poids_cases(nbPions):
     """Calcule le poids des cases en fonction de la dimension de la grille et du nombre de pions à aligner pour gagner"""
-    """[3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3] pour une grille 7x6"""
+    """[3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3] pour une grille 7x6 avec 4 pions à aligner"""
     poids = [0] * NB_COLONNES*NB_LIGNES
     # Sur les horizontales
     for j in range(NB_LIGNES):
