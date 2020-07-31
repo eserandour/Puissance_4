@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 30 juillet 2020 à 10 h 13
+#  Version du 31 juillet 2020 à 10 h 50
 ########################################################################
 """
 
@@ -12,8 +12,9 @@
 NB_PARTIES = 1000000  # A adapter (un nombre pair plus grand que 1)
 # Pour Ordinateur contre Ordinateur : IA_JAUNE et IA_ROUGE
 # Pour Humain contre Ordinateur : IA_ROUGE
-IA_JAUNE = 20 # Numéro de l'IA en compétition (entre 0 et 20 actuellement, mais pas de 11)
-IA_ROUGE = 20  # Numéro de l'IA en compétition (entre 0 et 20 actuellement, mais pas de 11)
+# L'IA 15 est actuellement la meilleure
+IA_JAUNE = 15  # Numéro de l'IA en compétition (entre 0 et 20 actuellement, mais pas de 11)
+IA_ROUGE = 15  # Numéro de l'IA en compétition (entre 0 et 20 actuellement, mais pas de 11)
 
 ########################################################################
 
