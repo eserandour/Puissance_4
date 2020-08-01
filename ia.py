@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 30 juillet 2020 à 12 h 51
+#  Version du 1 août 2020 à 14 h 33
 ########################################################################
 """
 
@@ -25,29 +25,29 @@ def jouer_ordi_hasard(positions, couleur):
 
 ########################################################################
 
-def poids_cases(nbPions):
+def poids_cases():
     """Calcule le poids des cases en fonction de la dimension de la grille et du nombre de pions à aligner pour gagner"""
     """[3,4,5,7,5,4,3,4,6,8,10,8,6,4,5,8,11,13,11,8,5,5,8,11,13,11,8,5,4,6,8,10,8,6,4,3,4,5,7,5,4,3] pour une grille 7x6 avec 4 pions à aligner"""
     poids = [0] * NB_COLONNES*NB_LIGNES
     # Sur les horizontales
     for j in range(NB_LIGNES):
-        for i in range(NB_COLONNES-nbPions+1):
-            for k in range(nbPions):
+        for i in range(NB_COLONNES-ALIGNEMENT+1):
+            for k in range(ALIGNEMENT):
                 poids[NB_COLONNES*j+i+k] += 1
     # Sur les verticales
-    for j in range(NB_LIGNES-nbPions+1):
+    for j in range(NB_LIGNES-ALIGNEMENT+1):
         for i in range(NB_COLONNES):
-            for k in range(nbPions):
+            for k in range(ALIGNEMENT):
                 poids[NB_COLONNES*j+i+k*NB_COLONNES] += 1
     # Sur les diagonales montantes
-    for j in range(NB_LIGNES-nbPions+1):
-        for i in range(NB_COLONNES-nbPions+1):
-            for k in range(nbPions):
+    for j in range(NB_LIGNES-ALIGNEMENT+1):
+        for i in range(NB_COLONNES-ALIGNEMENT+1):
+            for k in range(ALIGNEMENT):
                 poids[NB_COLONNES*j+i+k*NB_COLONNES+k] += 1
     # Sur les diagonales descendantes
-    for j in range(nbPions-1, NB_LIGNES):
-        for i in range(NB_COLONNES-nbPions+1):
-            for k in range(nbPions):
+    for j in range(ALIGNEMENT-1, NB_LIGNES):
+        for i in range(NB_COLONNES-ALIGNEMENT+1):
+            for k in range(ALIGNEMENT):
                 poids[NB_COLONNES*j+i-k*NB_COLONNES+k] += 1
     return poids
 
@@ -66,7 +66,7 @@ def liste_indices_maximum(liste):
 
 def jouer_ordi_poids_cases(positions, couleur):
     """L'ordinateur joue en ne tenant compte que du poids des cases de la grille potentiellement victorieuses"""
-    poidsCases = poids_cases(ALIGNEMENT)
+    poidsCases = poids_cases()
     poidsColonnes = [0] * NB_COLONNES
     for colonne in range(1, NB_COLONNES + 1):
         if not colonne_pleine(positions, colonne):
@@ -130,7 +130,7 @@ def position_potentielle(positions, colonne, ligne):
 def meilleure_position(positionsPotentielles):
     """Détermine la meilleure position en s'appuyant sur le poids des cases"""
     # Calcule le poids des cases
-    poidsCases = poids_cases(ALIGNEMENT)
+    poidsCases = poids_cases()
     # Détermine le poids des positions potentielles
     poidsPositionsPotentielles = []
     for i in range(len(positionsPotentielles)):
@@ -373,7 +373,7 @@ def jouer_ordi_ia10(positions, couleur):                             # Priorité
 
 ########################################################################
 
-# Pas d'IA 11
+# Pas d'IA11
 
 ########################################################################
 
