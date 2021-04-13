@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ########################################################################
-#  Version du 1 août 2020 à 14 h 33
+#  Version du 14 avril 2021 à 00 h 33
 ########################################################################
 """
 
@@ -101,7 +101,23 @@ def jouer_ordi_poids_cases(positions, couleur):
 ########################################################################
 
 def position(colonne, ligne):
-    """Déduit d'une position dans la grille une position dans la liste positions[]"""
+    """Convertit une position sous forme de coordonnées dans la grille en une position sous forme d'indice dans la liste positions[]"""
+    """
+    Pour une grille (7x6) :
+    La grille est codée sous la forme d'une liste : [0,1,2,3,...,41]
+    
+     1  2  3  4  5  6  7  <= colonnes
+    
+    35 36 37 38 39 40 41  <= ligne 6
+    28 29 30 31 32 33 34  <= ligne 5
+    21 22 23 24 25 26 27  <= ligne 4
+    14 15 16 17 18 19 20  <= ligne 3
+     7  8  9 10 11 12 13  <= ligne 2
+     0  1  2  3  4  5  6  <= ligne 1
+    
+    Pour la conversion, par exemple :
+    (colonne = 3 ; ligne = 4) renvoie l'indice 23 dans la liste positions
+    """
     position = (colonne-1) + (ligne-1)*NB_COLONNES
     return position
 
